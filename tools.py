@@ -40,6 +40,14 @@ class NeuralNetwork():
         else:
             print('Not compiled yet!')
 
+    def forward(self, inputs):
+        if inputs.shape == self.layerslist[0].neurons_amount:
+            self.layerslist[0].values = inputs
+        else:
+            print('Length of the input values and amount of a first layers neurons must be the same!')
+            return None
+        
+
 class Layer():
 
     def __init__(self, number=0, neurons_amount=1,
@@ -49,6 +57,7 @@ class Layer():
         self.number = number
         self.neurons_amount = neurons_amount
         self.w = None
+        self.values = np.zeros(neurons_amount)
 
     def __str__(self):
         rep = ''
